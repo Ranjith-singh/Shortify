@@ -16,7 +16,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JwtUtils {
 
     @Value("${jwt.secret}")
