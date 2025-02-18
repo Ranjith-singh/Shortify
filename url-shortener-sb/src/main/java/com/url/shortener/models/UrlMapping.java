@@ -19,7 +19,7 @@ public class UrlMapping {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String originalUrl;
-    private String stortUrl;
+    private String shortUrl;
     private int clickCount = 0;
     private LocalDateTime createdDate;
 
