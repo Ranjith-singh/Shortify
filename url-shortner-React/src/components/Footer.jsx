@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaFileAlt, FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiGeeksforgeeks} from "react-icons/si"
 
 const Footer = () => {
@@ -22,8 +22,8 @@ const Footer = () => {
           <a href="https://www.linkedin.com/in/ranjith-singh-s-061bba251/" className="hover:text-gray-200">
             <FaLinkedin size={24} />
           </a>
-          <a href="https://www.facebook.com/share/1ABuic9RY6/" className="hover:text-gray-200">
-            <FaFacebook size={24} />
+          <a href="https://drive.google.com/file/d/1UK8me9Vnjt4xAGIFoT3Nq249Kstq-dsS/view?usp=sharing" className="hover:text-gray-200">
+            <FaFileAlt size={24} />
           </a>
           <a href="https://www.geeksforgeeks.org/user/singhranpm5l/" className="hover:text-gray-200">
             <SiGeeksforgeeks size={24} />
