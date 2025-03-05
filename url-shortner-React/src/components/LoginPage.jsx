@@ -4,11 +4,12 @@ import TextField from './TextField';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import toast from 'react-hot-toast';
-
+import { useStoreContext } from '../contextApi/ContextApi';
 
 const LoginPage = () => {
     const navigate = useNavigate();
     const [loader, setLoader] = useState(false);
+    const { setToken } = useStoreContext();
 
     const {
         register,
@@ -23,7 +24,7 @@ const LoginPage = () => {
         mode: "onTouched",
     });
 
-    const registerHandler = async(data) =>{
+    const loginHandler = async(data) =>{
         setLoader(true);
         try {
             const { data: response } = await api.post(
@@ -31,6 +32,7 @@ const LoginPage = () => {
                 data
             );
             localStorage.setItem('AccessToken',JSON.stringify(response.token));
+            setToken(response.token);
             reset();
             navigate("/");
             toast.success("Successful Login!")
@@ -45,7 +47,7 @@ const LoginPage = () => {
     return (
         <div
             className='min-h-[calc(100vh-64px)] flex justify-center items-center'>
-            <form onSubmit={handleSubmit(registerHandler)}
+            <form onSubmit={handleSubmit(loginHandler)}
                 className="sm:w-[450px] w-[360px]  shadow-custom py-8 sm:px-8 px-4 rounded-md">
                 <h1 className="text-center font-serif text-btnColor font-bold lg:text-3xl text-2xl">
                     Login Here
