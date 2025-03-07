@@ -34,7 +34,7 @@ const LoginPage = () => {
             localStorage.setItem('AccessToken',JSON.stringify(response.token));
             setToken(response.token);
             reset();
-            navigate("/");
+            navigate("/dashboard");
             toast.success("Successful Login!")
         } catch (error) {
             console.log(error);
