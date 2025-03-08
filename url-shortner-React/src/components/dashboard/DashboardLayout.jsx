@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Graph from './Graph'
 import { dummyData } from '../../dummyData/Data'
 import { useStoreContext } from '../../contextApi/ContextApi'
 import { useFetchShortUrls } from '../../hooks/hooks'
+import ShortenPopUp from './ShortenPopUp'
 
 const DashboardLayout = () => {
   const {token} = useStoreContext();
   // console.log("AccessToken",token);
-  const {isLoading: loader, data: totalClicks} = useFetchShortUrls(token, onError);
   function onError(){
     console.log("Error");
   }
+  const {isLoading: loader, data: totalClicks} = useFetchShortUrls(token, onError);
+  const [shortenPopUp, setShortenPopUp] = useState(false);
+  const refetch = false;
 
   return (
     <div className="lg:px-14 sm:px-8 px-4 min-h-[calc(100vh-64px)]">
@@ -35,11 +38,16 @@ const DashboardLayout = () => {
           <Graph graphData={totalClicks}/>
         </div>
         <div className='py-5 sm:text-end text-center'>
-                <button className='bg-custom-gradient px-4 py-2 rounded-md text-white'>
+                <button className='bg-custom-gradient px-4 py-2 rounded-md text-white'
+                onClick={() => setShortenPopUp(true)}>
                     Create a New Short URL
                 </button>
             </div>
       </div>)}
+      <ShortenPopUp
+        refetch = {refetch}
+        open = {shortenPopUp}
+        setOpen = {setShortenPopUp}/>
     </div>
   )
 }
