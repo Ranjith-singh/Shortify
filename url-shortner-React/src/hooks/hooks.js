@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../api/api";
 
-export const useFetchShortUrls = (token, onError) => {
+export const useFetchTotalClicks = (token, onError) => {
   const startDate = "2025-02-01";
   const endDate = "2026-02-01";
 
@@ -25,6 +25,33 @@ export const useFetchShortUrls = (token, onError) => {
         clickDate: key,
         count: data[key],
       }));
+    },
+    onError,
+    staleTime: 5000,
+  });
+};
+
+export const useFetchShortUrls = (token, onError) => {
+  return useQuery({
+    queryKey: ["my-shortUrls"], // Unique query key
+    queryFn: async () => {
+      const response = await api.get(
+        "api/urls/myUrls",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      return response.data; // Return only data
+    },
+    select: (data) => {
+      const sortedData = Object.keys(data).sort(
+        (a,b) => new Date(b.createdDate) - new Date(a.createdDate)
+      );
+      return sortedData;
     },
     onError,
     staleTime: 5000,
