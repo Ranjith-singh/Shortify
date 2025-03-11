@@ -31,8 +31,9 @@ const LoginPage = () => {
                 "/api/auth/public/login",
                 data
             );
-            localStorage.setItem('AccessToken',JSON.stringify(response.token));
+            console.log("AccessToken",response.token);
             setToken(response.token);
+            localStorage.setItem('AccessToken',JSON.stringify(response.token));
             reset();
             navigate("/dashboard");
             toast.success("Successful Login!")

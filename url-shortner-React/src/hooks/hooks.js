@@ -48,11 +48,12 @@ export const useFetchShortUrls = (token, onError) => {
       return response.data; // Return only data
     },
     select: (data) => {
-      const sortedData = Object.keys(data).sort(
-        (a,b) => new Date(b.createdDate) - new Date(a.createdDate)
+      const sortedData = data.sort(
+          (a, b) => new Date(b.createdDate) - new Date(a.createdDate)
       );
       return sortedData;
-    },
+  },
+
     onError,
     staleTime: 5000,
   });
