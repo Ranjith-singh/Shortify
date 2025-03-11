@@ -7,6 +7,7 @@ import ShortenPopUp from './ShortenPopUp'
 import ShortenUrlList from './shortenUrlList';
 import {FaLink} from 'react-icons/fa'
 import { href, useNavigate } from 'react-router-dom'
+import Loader from '../Loader'
 
 const DashboardLayout = () => {
   const {token, setToken} = useStoreContext();
@@ -25,7 +26,7 @@ const DashboardLayout = () => {
     <div className="lg:px-14 sm:px-8 px-4 min-h-[calc(100vh-64px)]">
       {loader?(
         <div>
-          LOADING...
+          <Loader/>
         </div>
       ) :
       (<div className="lg:w-[90%] w-full mx-auto py-4">
