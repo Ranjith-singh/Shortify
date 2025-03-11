@@ -9,7 +9,7 @@ import {FaLink} from 'react-icons/fa'
 import { href, useNavigate } from 'react-router-dom'
 
 const DashboardLayout = () => {
-  const {token} = useStoreContext();
+  const {token, setToken} = useStoreContext();
   const navigate = useNavigate();
   // console.log("AccessToken",token);
   function onError(){
@@ -29,15 +29,6 @@ const DashboardLayout = () => {
         </div>
       ) :
       (<div className="lg:w-[90%] w-full mx-auto py-4">
-        <div className="flex justify-end">
-          <button className=" sm:ml-0 -ml-1 bg-rose-700 text-white  cursor-pointer w-24 text-center font-semibold px-2 py-2 rounded-md  hover:text-slate-300  transition-all duration-150 "
-              onClick={() =>{
-                  localStorage.removeItem("AccessToken");
-                  navigate("/login");
-              }}>
-              logout
-          </button>
-        </div>
         <div className=" h-96 relative ">
           {totalClicks.length === 0 && (
             <div className="absolute flex flex-col  justify-center sm:items-center items-end  w-full left-0 top-0 bottom-0 right-0 m-auto">
