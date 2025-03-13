@@ -16,7 +16,7 @@
             "request": "launch",
             "mainClass": "com.url.shortener.UrlShortenerSbApplication",
             "projectName": "url-shortener-sb",
-            "envFile": "D:\\projects\\url-shortener\\url-shortener-sb\\.env"
+            "envFile": "D:\\projects\\url-shortener\\url-shortener-sb\\.env.prod"
         }
     ]
 }

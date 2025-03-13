@@ -11,7 +11,7 @@ let desc =
 function LandingPage() {
   const navigate = useNavigate();
   const {token} = useStoreContext();
-  console.log("AccessToken",token);
+  // console.log("AccessToken",token);
   const dashBoardNavigateHandler = () => {
 
   };

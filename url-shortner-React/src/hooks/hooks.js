@@ -9,7 +9,7 @@ export const useFetchTotalClicks = (token, onError) => {
     queryKey: ["my-shortUrls", startDate, endDate], // Unique query key
     queryFn: async () => {
       const response = await api.get(
-        `http://localhost:8080/api/urls/totalClicks?startDate=${startDate}&endDate=${endDate}`,
+        `/api/urls/totalClicks?startDate=${startDate}&endDate=${endDate}`,
         {
           headers: {
             "Content-Type": "application/json",

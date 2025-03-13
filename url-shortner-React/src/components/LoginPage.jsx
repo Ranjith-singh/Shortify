@@ -31,7 +31,7 @@ const LoginPage = () => {
                 "/api/auth/public/login",
                 data
             );
-            console.log("AccessToken",response.token);
+            // console.log("AccessToken",response.token);
             setToken(response.token);
             localStorage.setItem('AccessToken',JSON.stringify(response.token));
             reset();
