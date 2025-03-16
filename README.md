@@ -1,7 +1,7 @@
-# URL Shortener
+# Shortify
 
 ## Overview
-This URL Shortener project is a web application that allows users to convert long URLs into short, easy-to-manage links. It features a **Spring Boot backend**, a **React frontend**, and a **PostgreSQL database** hosted on **Neon Tech**. The backend is **containerized with Docker** and deployed on **Render**, while the frontend is hosted on **Netlify**.
+This Shortify project is a web application that allows users to convert long URLs into short, easy-to-manage links. It features a **Spring Boot backend**, a **React frontend**, and a **PostgreSQL database** hosted on **Neon Tech**. The backend is **containerized with Docker** and deployed on **Render**, while the frontend is hosted on **Netlify**.
 
 ---
 
