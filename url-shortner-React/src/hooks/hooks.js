@@ -3,7 +3,7 @@ import api from "../api/api";
 
 export const useFetchTotalClicks = (token, onError) => {
   const startDate = "2025-02-01";
-  const endDate = "2026-02-01";
+  const endDate= new Date().toISOString().split('T')[0];
 
   return useQuery({
     queryKey: ["my-shortUrls", startDate, endDate], // Unique query key

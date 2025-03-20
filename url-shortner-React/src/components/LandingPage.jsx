@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useStoreContext } from '../contextApi/ContextApi';
 
 let desc =
-  "Generate short, memorable links with ease using Linklytics’s intuitive interface. Share URLs effortlessly across platforms. Optimize your sharing strategy with Linklytics. Track clicks and manage your links seamlessly to enhance your online presence. Generate short, memorable links with ease using Linklytics’s intuitive interface. Share URLs effortlessly across platforms.";
+  "Generate short, memorable links with ease using Shortify’s intuitive interface. Share URLs effortlessly across platforms. Optimize your sharing strategy with Shortify. Track clicks and manage your links seamlessly to enhance your online presence. Generate short, memorable links with ease using Shortify’s intuitive interface. Share URLs effortlessly across platforms.";
 
 
 function LandingPage() {
@@ -28,7 +28,7 @@ function LandingPage() {
                 viewport={{once : true}}
                 transition={{duration : 1.0}}
                 className="font-bold font-roboto text-slate-800 md:text-5xl sm:text-4xl text-3xl   md:leading-[55px] sm:leading-[45px] leading-10 lg:w-full md:w-[70%] w-full">
-                Linklytics Simplifies URL Shortening For Efficient Sharing.
+                Shortify Simplifies URL Shortening For Efficient Sharing.
             </motion.h1>
             <motion.p
                 initial = {{opacity : 0, y : -80}}
@@ -39,10 +39,10 @@ function LandingPage() {
                 viewport={{once : true}}
                 transition={{duration : 1.0}} 
                 className="text-slate-700 text-sm my-5">
-                Linklytics streamlines the process of URL shortening, making sharing
+                Shortify streamlines the process of URL shortening, making sharing
                 links effortless and efficient. With its user-friendly interface,
-                Linklytics allows you to generate concise, easy-to-share URLs in
-                seconds. Simplify your sharing experience with Linklytics today.
+                Shortify allows you to generate concise, easy-to-share URLs in
+                seconds. Simplify your sharing experience with Shortify today.
             </motion.p>
             <div className="flex items-center gap-3">
             <motion.button
