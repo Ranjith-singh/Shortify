@@ -38,8 +38,8 @@ const LoginPage = () => {
             navigate("/dashboard");
             toast.success("Successful Login!")
         } catch (error) {
-            navigate("/error");
-            toast.error("Login Failed!")
+            // navigate("/error");
+            toast.error(`Login Failed!\nInvalid Username or password`)
         } finally {
             setLoader(false);
         }

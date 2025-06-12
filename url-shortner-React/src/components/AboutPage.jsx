@@ -9,12 +9,7 @@ const AboutPage = () => {
         </h1>
         <p className="text-gray-700 text-sm  mb-8 xl:w-[60%] lg:w-[70%] sm:w-[80%] w-full ">
           Shortify simplifies URL shortening for efficient sharing. Easily
-          generate, manage, and track your shortened links. Shortify simplifies
-          URL shortening for efficient sharing. Easily generate, manage, and
-          track your shortened links. Shortify simplifies URL shortening for
-          efficient sharing. Easily generate, manage, and track your shortened
-          links. Shortify simplifies URL shortening for efficient sharing.
-          Easily generate, manage, and track your shortened links.
+          generate, manage, and track your shortened links.
         </p>
         <div className="space-y-5 xl:w-[60%] lg:w-[70%] sm:w-[80%] w-full ">
           <div className="flex items-start">
