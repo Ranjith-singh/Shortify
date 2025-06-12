@@ -67,3 +67,21 @@ Users enter a long URL through the frontend.
 
 This project is an excellent example of a **modern, cloud-native web application** that is both efficient and scalable. 🌍✨
 
+## Resources
+
+- **[NeonDB – PostgreSQL Database](https://console.neon.tech/)**  
+  Cloud-hosted PostgreSQL database with branching and autoscaling features.
+
+- **[Backend – Render Deployment](https://dashboard.render.com/)**  
+  Render dashboard for managing and deploying backend services.
+
+- **[Frontend – Netlify Deployment](https://app.netlify.com/)**  
+  Netlify interface for hosting and deploying frontend applications.
+
+- **[Docker Hub](https://hub.docker.com/)**  
+  Repository for managing Docker container images.
+
+- **[Cron Job Scheduler](https://console.cron-job.org/)**  
+  Free online cron job service for scheduling recurring tasks.
+
+
