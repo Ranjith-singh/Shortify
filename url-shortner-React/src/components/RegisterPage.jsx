@@ -27,27 +27,20 @@ const RegisterPage = () => {
     const registerHandler = async(data) =>{
         setLoader(true);
         try{
-            const {data : existingUser} = await api.post(
-                "/api/auth/public/login",
-                data
-            );
-            navigate("/register");
-            toast.error("Username already Exists, Enter other Username")
+            const { data: response } = await api.post(
+                    "/api/auth/public/register",
+                    data);
+            navigate("/login");
+            toast.success("Registration Successful!")
         }
         catch(error){
-            try{
-                const { data: response } = await api.post(
-                    "/api/auth/public/register",
-                    data
-                );
-                // console.log(response);
+            if(error.response.status === 400){
                 reset();
-                navigate("/login");
-                toast.success("Registration Successful!")
+                toast.error(error.response.data);
             }
-            catch (error) {
+            else{
                 navigate("/error");
-                toast.error("Registration Failed!")
+                toast.error("Registration Failed");
             }
         }
         finally {

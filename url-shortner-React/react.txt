@@ -1,0 +1,65 @@
+suggested Extentions:
+    AutoRename Tag, Bracket colorer, Es7 react, Intellicode
+
+Vite:
+    Vite is a website that provides a simple structural react application
+    you can create a this structure using cmd : npm create vite@latest
+    run npm install to install all dependencies and run: npm run dev
+    it provides you different files like package json and index.html which is intro page
+    It also provides the app.jsx inside the src folder which provides the contents to index.html
+        and altering the app.jsx alters the contents
+    
+TailwindCss:
+    lets you add dynamic styles to the static css pages through classes
+    it works by scanning class in .html, .js files and add styles to static css pages
+    you can install tailwind css as a plugin to vite or Postcss
+    install TailwindCss and Postcss: npm install tailwindcss Postcss
+    In postcss.config add both tailwindcss and autoprefixer as plugin
+        autoprefixer : contains webkit for cross browser compatibility
+    you can use tailwindcss to files using the tailwind.config by defining the files[* for all]
+    you can also define custom styles under the theme section of tailwind.config
+
+App.jsx:
+    using react router dom we can provide different routes under the BrowserRouter specify the routes
+    react-router-dom:
+        react router dom is used for url based re-routing of the pages
+    use route elements path and element args for routing
+    using rafce(react arrow func export component) to provide the template code
+    create a landingPage and aboutPage .jsx files and export those contents to App.jsx
+    diff b/w .js and .jsx:
+        you can also write html contents in .jsx along with js
+    aboutPage:
+        create a static about page
+        use react icons dependency to provide style icons like share, beer etc
+        return all this html+tailwind config set to aboutPage func and export it
+    landingPage:
+
+    NavBar and footer:
+        the NavBar and footer are common for all the routes in the BrowserRouter
+        so surround routes with NavBar and footer resp
+
+    className:
+        text-[size]
+        font-[family]
+        underline
+        lg px-14: lg-large screen pd-padding x-horizontal 14
+        sm pt-14: small screen padding top 14
+        min-h-[calc(100vh - 64px)]: min height []-embed value calc(100% vertical height - 64 pixels)
+        bg-white: background white
+        mb: margin bottom
+        xl: extra large
+        flex items-start: makes element flex container, assign items to beginning of container
+        text-slate: text grey
+        space-y-5: space b/w child elements
+        flex-row: arrange items in horizontal row fashion
+        justify-between: justify b/w div elements
+
+
+footer:
+    &copy; before the text provides the copyWrite tag
+    we use className(tailwind unity classes) instead of style attribute
+        because in inline styling we need to manually defined the style attr like color, bg color
+        in case of className by tailwind because more responsive and easy to maintain
+    you can use the react-icons lib to generate different icons for linkedIn, facebook etc
+    all the contents are put inside the footer method return so when method is called they are returned
+    

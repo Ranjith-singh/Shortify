@@ -31,8 +31,10 @@ public class UserService {
     }
 
     public JwtAuthenticationResponse authenticateUser(LoginRequest loginRequest){
+        // System.out.println("Login attempt with email: " + loginRequest.getEmail());
+        
         Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
+            new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
@@ -44,5 +46,13 @@ public class UserService {
         return userRepository.findByUsername(name).orElseThrow(
             ()-> new UsernameNotFoundException("User not found with username: "+name)
         );
+    }
+
+    // public Boolean userExists(User user){
+    //     return userRepository.existsByUsername(user.getUsername());
+    // }
+
+    public Boolean emailExists(User user){
+        return userRepository.existsByEmail(user.getEmail());
     }
 }

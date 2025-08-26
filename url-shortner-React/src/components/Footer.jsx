@@ -16,16 +16,16 @@ const Footer = () => {
         </p>
 
         <div className="flex space-x-6 mt-4 lg:mt-0">
-          <a href="https://github.com/Ranjith-singh" className="hover:text-gray-200">
+          <a href="https://github.com/Ranjith-singh" className="hover:text-gray-300">
             <FaGithub size={24} />
           </a>
-          <a href="https://www.linkedin.com/in/ranjith-singh-s-061bba251/" className="hover:text-gray-200">
+          <a href="https://www.linkedin.com/in/ranjith-singh-s-061bba251/" className="hover:text-gray-300">
             <FaLinkedin size={24} />
           </a>
-          <a href="https://drive.google.com/file/d/1UK8me9Vnjt4xAGIFoT3Nq249Kstq-dsS/view?usp=sharing" className="hover:text-gray-200">
+          <a href="https://drive.google.com/file/d/1EEJg631B6O3L_7SQCV5bqEMkYCTJWJdd/view?usp=sharing" className="hover:text-gray-300">
             <FaFileAlt size={24} />
           </a>
-          <a href="https://www.geeksforgeeks.org/user/singhranpm5l/" className="hover:text-gray-200">
+          <a href="https://www.geeksforgeeks.org/user/singhranpm5l/" className="hover:text-gray-300">
             <SiGeeksforgeeks size={24} />
           </a>
         </div>

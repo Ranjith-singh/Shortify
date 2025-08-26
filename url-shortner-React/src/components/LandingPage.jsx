@@ -13,7 +13,7 @@ function LandingPage() {
   const {token} = useStoreContext();
   // console.log("AccessToken",token);
   const dashBoardNavigateHandler = () => {
-
+      token? navigate("/dashboard"): navigate("/login")
   };
   return (
     <div className="min-h-[calc(100vh-64px)]  lg:px-14 sm:px-8 px-4">

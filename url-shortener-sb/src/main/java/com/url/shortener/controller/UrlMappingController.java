@@ -8,7 +8,6 @@ import com.url.shortener.dtos.ClickEventDTO;
 import com.url.shortener.dtos.UrlMappingDTO;
 import com.url.shortener.service.UrlMappingService;
 import com.url.shortener.service.UserService;
-import com.url.shortener.models.ClickEvent;
 import com.url.shortener.models.User;
 
 import lombok.AllArgsConstructor;

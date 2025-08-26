@@ -18,28 +18,41 @@ const LoginPage = () => {
         formState: {errors}
     } = useForm({
         defaultValues: {
-            username: "",
+            email: "",
             password: ""
         },
         mode: "onTouched",
     });
 
+    const onLogOutHandler = () => {
+        localStorage.removeItem("AccessToken");
+        setToken(false);
+        navigate("/login");
+    };
+
     const loginHandler = async(data) =>{
         setLoader(true);
         try {
+            console.log(data);
             const { data: response } = await api.post(
                 "/api/auth/public/login",
                 data
             );
             // console.log("AccessToken",response.token);
             setToken(response.token);
+            const logoutTime = 1000*60*60*24;
             localStorage.setItem('AccessToken',JSON.stringify(response.token));
+            setTimeout(()=>{
+                onLogOutHandler();
+            },logoutTime);
+
             reset();
             navigate("/dashboard");
             toast.success("Successful Login!")
         } catch (error) {
             // navigate("/error");
-            toast.error(`Login Failed!\nInvalid Username or password`)
+            console.log(error);
+            toast.error(`Login Failed!\nInvalid email or password`)
         } finally {
             setLoader(false);
         }
@@ -58,12 +71,12 @@ const LoginPage = () => {
     
                 <div className="flex flex-col gap-3">
                     <TextField
-                        label="UserName"
+                        label="email"
                         required
-                        id="username"
+                        id="email"
                         type="text"
-                        message="*Username is required"
-                        placeholder="Type your username"
+                        message="*email is required"
+                        placeholder="Type your email"
                         register={register}
                         errors={errors}
                     />

@@ -4,7 +4,6 @@ import { IoIosMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { useStoreContext } from "../contextApi/ContextApi";
 
-
 const Navbar = () => {
   const path = useLocation().pathname;
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -12,10 +11,20 @@ const Navbar = () => {
   const {token, setToken} = useStoreContext();
 
   const onLogOutHandler = () => {
-        localStorage.removeItem("AccessToken");
-        setToken(false);
-        navigate("/login");
+      localStorage.removeItem("AccessToken");
+      setToken(false);
+      navigate("/login");
   };
+
+  const validateToken = (token)=>{
+    if(!token){
+      setToken(false);
+      navigate("/login");
+    }
+    else{
+      navigate("/dashboard");
+    }
+  }
 
   return (
     <div className="h-16 bg-custom-gradient  z-50 flex items-center sticky top-0 ">
@@ -51,7 +60,8 @@ const Navbar = () => {
             </Link>
           </li>
             {token ? (
-              <Link  className={`${
+              <Link onClick={validateToken}
+                className={`${
                 path === "/dashboard" ? "text-white font-semibold" : "text-gray-200"
                 }`}
                 to="/dashboard">

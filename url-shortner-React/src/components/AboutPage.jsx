@@ -1,5 +1,7 @@
 import React from "react";
 import { FaLink, FaShareAlt, FaEdit, FaChartLine } from "react-icons/fa";
+import {motion} from "framer-motion"
+
 const AboutPage = () => {
   return (
     <div className="lg:px-14 sm:px-8 px-5 min-h-[calc(100vh-64px)] pt-2">
@@ -12,10 +14,13 @@ const AboutPage = () => {
           generate, manage, and track your shortened links.
         </p>
         <div className="space-y-5 xl:w-[60%] lg:w-[70%] sm:w-[80%] w-full ">
-          <div className="flex items-start">
+          <motion.div
+            whileHover={{scale: 1.1}}
+            whileTap={{scale: 0.9}}
+            className="flex items-start">
             <FaLink className="text-blue-500 text-3xl mr-4" />
             <div>
-              <h2 className="sm:text-2xl font-bold text-slate-800">
+              <h2 className="sm:text-2xl font-bold text-slate-800 hover:text-blue-500">
                 Simple URL Shortening
               </h2>
               <p className="text-gray-600">
@@ -24,11 +29,17 @@ const AboutPage = () => {
                 ensure you can start shortening URLs without any hassle.
               </p>
             </div>
-          </div>
-          <div className="flex items-start">
+          </motion.div>
+          <motion.div
+            whileHover={{scale: 1.1}}
+            whileTap={{scale: 0.9}}
+            className="flex items-start">
             <FaShareAlt className="text-green-500 text-3xl mr-4" />
-            <div>
-              <h2 className="sm:text-2xl font-bold text-slate-800">
+            <div
+              whileHover={{scale: 1.1}}
+              whileTap={{scale: 0.9}}
+            >
+              <h2 className="sm:text-2xl font-bold text-slate-800 hover:text-green-500">
                 Powerful Analytics
               </h2>
               <p className="text-gray-600">
@@ -37,11 +48,14 @@ const AboutPage = () => {
                 referral sources to optimize your marketing strategies.
               </p>
             </div>
-          </div>
-          <div className="flex items-start">
+          </motion.div>
+          <motion.div
+              whileHover={{scale: 1.1}}
+              whileTap={{scale: 0.9}}
+              className="flex items-start">
             <FaEdit className="text-purple-500 text-3xl mr-4" />
             <div>
-              <h2 className="sm:text-2xl font-bold text-slate-800">
+              <h2 className="sm:text-2xl font-bold text-slate-800 hover:text-purple-500">
                 Enhanced Security
               </h2>
               <p className="text-gray-600">
@@ -50,11 +64,14 @@ const AboutPage = () => {
                 remains safe and secure.
               </p>
             </div>
-          </div>
-          <div className="flex items-start">
+          </motion.div>
+          <motion.div
+            whileHover={{scale: 1.1}}
+            whileTap={{scale: 0.9}}
+            className="flex items-start">
             <FaChartLine className="text-red-500 text-3xl mr-4" />
             <div>
-              <h2 className="sm:text-2xl font-bold text-slate-800">
+              <h2 className="sm:text-2xl font-bold text-slate-800 hover:text-red-500">
                 Fast and Reliable
               </h2>
               <p className="text-gray-600">
@@ -63,7 +80,7 @@ const AboutPage = () => {
                 responsive, ensuring a seamless experience for your users.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
