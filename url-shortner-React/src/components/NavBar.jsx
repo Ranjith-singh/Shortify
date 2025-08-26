@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoIosMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { useStoreContext } from "../contextApi/ContextApi";
+import { tokenTime, timer } from "./LoginPage";
 
 const Navbar = () => {
   const path = useLocation().pathname;
@@ -11,6 +12,8 @@ const Navbar = () => {
   const {token, setToken} = useStoreContext();
 
   const onLogOutHandler = () => {
+      clearInterval(timer);
+      clearTimeout(tokenTime);
       localStorage.removeItem("AccessToken");
       setToken(false);
       navigate("/login");

@@ -6,6 +6,10 @@ import api from '../api/api';
 import toast from 'react-hot-toast';
 import { useStoreContext } from '../contextApi/ContextApi';
 
+let tokenTime;
+let timer;
+const logoutTime = 1000*60*60*24;
+
 const LoginPage = () => {
     const navigate = useNavigate();
     const [loader, setLoader] = useState(false);
@@ -40,9 +44,15 @@ const LoginPage = () => {
             );
             // console.log("AccessToken",response.token);
             setToken(response.token);
-            const logoutTime = 1000*60*60*24;
             localStorage.setItem('AccessToken',JSON.stringify(response.token));
-            setTimeout(()=>{
+
+            // let time = 0;
+            // timer = setInterval(()=>{
+            //     time = time + 1000;
+            //     console.log(time);
+            // },1000)
+            tokenTime = setTimeout(()=>{
+                clearInterval(timer);
                 onLogOutHandler();
             },logoutTime);
 
@@ -115,3 +125,4 @@ const LoginPage = () => {
 }
 
 export default LoginPage
+export {tokenTime, timer}
