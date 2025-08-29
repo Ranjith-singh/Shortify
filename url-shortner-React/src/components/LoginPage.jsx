@@ -37,7 +37,7 @@ const LoginPage = () => {
     const loginHandler = async(data) =>{
         setLoader(true);
         try {
-            console.log(data);
+            // console.log(data);
             const { data: response } = await api.post(
                 "/api/auth/public/login",
                 data
@@ -121,7 +121,7 @@ const LoginPage = () => {
                 </p>
             </form>
         </div>
-      )
+    )
 }
 
 export default LoginPage

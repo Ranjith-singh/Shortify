@@ -8,6 +8,7 @@ import ShortenUrlList from './shortenUrlList';
 import {FaLink} from 'react-icons/fa'
 import { href, useNavigate } from 'react-router-dom'
 import Loader from '../Loader'
+import toast from 'react-hot-toast'
 
 const DashboardLayout = () => {
   const {token, setToken} = useStoreContext();
@@ -16,9 +17,15 @@ const DashboardLayout = () => {
   function onError(){
     console.log("Error");
   }
-  const {isLoading, data : myShortenUrls, refetch} = useFetchShortUrls(token, onError);
+  const {isLoading, data : myShortenUrls, refetch, error} = useFetchShortUrls(token, onError, setToken);
+  if(error?.response?.status === 403){
+    localStorage.removeItem("AccessToken");
+    setToken(false);
+    toast.error("Session Expired! Login again")
+    navigate("/login");
+  }
 
-  const {isLoading: loader, data: totalClicks} = useFetchTotalClicks(token, onError);
+  const {isLoading: loader, data: totalClicks} = useFetchTotalClicks(token, onError, setToken);
   const [shortenPopUp, setShortenPopUp] = useState(false);
   // const refetch = false;
 

@@ -48,6 +48,12 @@ public class UserService {
         );
     }
 
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email).orElseThrow(
+            ()-> new UsernameNotFoundException("Email not found with username: "+email)
+        );
+    }
+
     // public Boolean userExists(User user){
     //     return userRepository.existsByUsername(user.getUsername());
     // }

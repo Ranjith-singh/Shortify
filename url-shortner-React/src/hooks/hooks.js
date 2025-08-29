@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../api/api";
 
-export const useFetchTotalClicks = (token, onError) => {
+export const useFetchTotalClicks = (token, onError, setToken) => {
   const startDate = "2025-02-01";
   const endDate= new Date().toISOString().split('T')[0];
 
@@ -9,7 +9,7 @@ export const useFetchTotalClicks = (token, onError) => {
     queryKey: ["my-shortUrls", startDate, endDate], // Unique query key
     queryFn: async () => {
       const response = await api.get(
-        `/api/urls/totalClicks?startDate=${startDate}&endDate=${endDate}`,
+        `/api/urls/totalClicks?startDate=${startDate}&endDate=${endDate}`, // if not try this: api/urls/totalClicks?startDate=${startDate}&endDate=${endDate}`
         {
           headers: {
             "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const useFetchTotalClicks = (token, onError) => {
   });
 };
 
-export const useFetchShortUrls = (token, onError) => {
+export const useFetchShortUrls = (token, onError, setToken) => {
   return useQuery({
     queryKey: ["my-shortUrls"], // Unique query key
     queryFn: async () => {
@@ -46,13 +46,15 @@ export const useFetchShortUrls = (token, onError) => {
         }
       );
       return response.data; // Return only data
+      
     },
     select: (data) => {
       const sortedData = data.sort(
           (a, b) => new Date(b.createdDate) - new Date(a.createdDate)
       );
+      // console.log(sortedData);
       return sortedData;
-  },
+    },
 
     onError,
     staleTime: 5000,

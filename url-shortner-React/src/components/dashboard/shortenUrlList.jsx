@@ -2,7 +2,7 @@ import React from 'react'
 import ShortenItem from './ShortenItem'
 
 const ShortenUrlList = ({ data }) => {
-  // console.log("data",data);
+  // console.log("data",data[0]);
   return (
     <div className='my-6 space-y-4'>
         {data.map((item) => (

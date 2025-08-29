@@ -35,9 +35,9 @@ function LandingPage() {
                 whileInView={{
                   opacity : 1,
                   y : 0
-                }} 
+                }}
                 viewport={{once : true}}
-                transition={{duration : 1.0}} 
+                transition={{duration : 1.0}}
                 className="text-slate-700 text-sm my-5">
                 Shortify streamlines the process of URL shortening, making sharing
                 links effortless and efficient. With its user-friendly interface,
@@ -54,7 +54,7 @@ function LandingPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
               onClick={dashBoardNavigateHandler}
-              className="bg-custom-gradient  w-40 text-white rounded-md  py-2"
+              className="hover:bg-custom-gradient hover:text-white border-btnColor border text-btnColor rounded-xl  py-2 w-40"
             >
               Manage Links
             </motion.button>
@@ -67,29 +67,57 @@ function LandingPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
               onClick={dashBoardNavigateHandler}
-              className="border-btnColor border w-40 text-btnColor rounded-md  py-2 "
+              className="hover:bg-custom-gradient hover:text-white border-btnColor border text-btnColor rounded-xl  py-2 w-40"
             >
               Create Short Link
             </motion.button>
           </div>
         </div>
-        <div className="   flex-1 flex   justify-center w-full">
+        {/* <div className="   flex-1 flex   justify-center w-full">
           <motion.img
             initial={{ opacity: 0 }}
             whileInView={{
               opacity: 1,
             }}
-            whileHover={{ opacity: 0 }}
+            whileHover={{ rotate:720, opacity:0}}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.5 }}
             className="w-full h-full object-cover transition-opacity duration-1000 opacity-100 group-hover:opacity-0"
             src="/images/img2.png"
             alt=""
           />
+        </div> */}
+        <div className="flex-1 flex justify-center w-full">
+          <motion.div
+            initial="initial"
+            whileHover="hover"
+            className="relative w-full h-full max-w-[450px] max-h-[450px]" // adjust size as needed
+          >
+            <motion.img
+              src="/images/img2.png"
+              alt="Default"
+              className="relative top-0 left-0 w-full h-full object-cover"
+              variants={{
+                initial: { opacity: 1 },
+                hover: { rotate:1080,opacity: 0 },
+              }}
+              transition={{ duration: 1.5 }}
+            />
+            <motion.img
+              src="/images/Mangekyou_Sharingan_Kakashi.png"
+              alt="Hover"
+              className="absolute top-0 left-0 w-full h-full object-cover"
+              variants={{
+                initial: { opacity: 0 },
+                hover: { rotate:1080, opacity: 1 },
+              }}
+              transition={{ duration: 1.5 }}
+            />
+          </motion.div>
         </div>
       </div>
-      <div className="sm:pt-12 pt-7">
-      <motion.p
+      <div className="sm:pt-12 pt-3.5">
+        <motion.p
           initial={{ opacity: 0, y: 50 }}
           whileInView={{
             opacity: 1,
@@ -101,22 +129,25 @@ function LandingPage() {
         >
           Trusted by individuals and teams at the world best companies{" "}
         </motion.p>
+        <p className="text-slate-800 font-roboto font-bold lg:w-[60%]  md:w-[70%] sm:w-[80%] mx-auto text-3xl text-center pt-10">
+          how it works
+        </p>
         <div className="pt-4 pb-7 grid lg:gap-7 gap-4 xl:grid-cols-4  lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-4">
           <Card
-            title="Simple URL Shortening"
-            desc="Experience the ease of creating short, memorable URLs in just a few clicks. Our intuitive interface and quick setup process ensure you can start shortening URLs without any hassle."
+            title="Signup/SignIn"
+            desc="Signup using username, email & password, then Signin using email & password to get the AccessToken for accessing different urls"
           />
           <Card
-            title="Powerful Analytics"
-            desc="Gain insights into your link performance with our comprehensive analytics dashboard. Track clicks, geographical data, and referral sources to optimize your marketing strategies."
+            title="Create a Short Url"
+            desc="Provide the original link to any website and then click on generate url to get the short url, which gets copied to the clipboard"
           />
           <Card
-            title="Enhanced Security"
-            desc="Rest assured with our robust security measures. All shortened URLs are protected with advanced encryption, ensuring your data remains safe and secure."
+            title="Url Re-routing"
+            desc="When you click on the generated short url, you will be redirected to the original url while keeping the click count for analysis"
           />
           <Card
-            title="Fast and Reliable"
-            desc="Enjoy lightning-fast redirects and high uptime with our reliable infrastructure. Your shortened URLs will always be available and responsive, ensuring a seamless experience for your users."
+            title="Analysis"
+            desc="Based on the click count you can get the clicks per day for particular url as well as for all short urls owned by the User"
           />
         </div>
       </div>

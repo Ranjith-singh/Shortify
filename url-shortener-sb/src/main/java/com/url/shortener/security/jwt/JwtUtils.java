@@ -51,10 +51,10 @@ public class JwtUtils {
     }
 
     public String getUsernameFromJwtToken(String token){
-        System.out.println("payload: "+Jwts.parser()
-                .verifyWith((SecretKey) key())
-                .build().parseSignedClaims(token)
-                .getPayload());
+        // System.out.println("payload: "+Jwts.parser()
+        //         .verifyWith((SecretKey) key())
+        //         .build().parseSignedClaims(token)
+        //         .getPayload());
         return Jwts.parser()
                 .verifyWith((SecretKey) key())
                 .build().parseSignedClaims(token)

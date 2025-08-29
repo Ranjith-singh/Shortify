@@ -17,7 +17,8 @@ const ShortenItem = ({originalUrl, shortUrl, clickCount, createdDate}) => {
     const subDomain = import.meta.env.VITE_REACT_FRONT_END_URL.replace(
         /^https?:\/\//,
         ""
-      );
+    );
+    // console.log("subDomain: ",subDomain);
     const { token } = useStoreContext();
     const navigate = useNavigate();
     const [isCopied, setIsCopied] = useState(false);

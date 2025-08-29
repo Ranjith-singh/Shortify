@@ -32,18 +32,103 @@ App.jsx:
         create a static about page
         use react icons dependency to provide style icons like share, beer etc
         return all this html+tailwind config set to aboutPage func and export it
-    landingPage:
+        general info
+        provide the key features of application using the framer-motion's motion
 
     NavBar and footer:
         the NavBar and footer are common for all the routes in the BrowserRouter
         so surround routes with NavBar and footer resp
+    
+    NavBar:
+        links for home, about, dashboard and signup/signin
+        sticky to stick NavBar to top when scrolling
+        display different contents based on the token
+        use sm to display different contents for laptops and mobiles
+        use flags to toggle the menu
+
+    footer:
+        &copy; before the text provides the copyWrite tag
+        we use className(tailwind unity classes) instead of style attribute
+            because in inline styling we need to manually defined the style attr like color, bg color
+            in case of className by tailwind because more responsive and easy to maintain
+        you can use the react-icons lib to generate different icons for linkedIn, facebook etc
+        all the contents are put inside the footer method return so when method is called they are returned
+        links to linkedIn, github etc
+
+    landingPage:
+        for implementing dynamic styles we can use frame-motion motion lib
+        In motion we can pass different types of parameters like
+            initial, whileView, whileTap, whileHover, transition etc
+            we can provide different attr for these parameters like color,scale etc
+            we can also change the only the required child of motion.ele tag using variants
+                for parameters provide =val then call the variants in child class and call the val as parameter
+        general info about app
+        buttons to /dashboard or /login based on the AccessToken
+        image: rotate and swap using the motion div
+        provide info about how it works on the cards below using the framer
+            use stiffness to control spring animation
+        
+    api.js:
+        establish backend connection to the spring-boot using axios
+        provide the baseUrl as default and export it
+
+    loginPage:
+        use react-hook-form to create a form for login
+        use useNavigate(): to navigate to any url and useState(false): to get [val,set(val)]
+        you can import register, handleSubmit and reset functions from the react-hook-form's useForm
+        you can use both login and logout handlers
+        logout handler:
+            remove AccessToken using localStorage
+        login handler:
+            request made to the backend using the api.js post method which uses the axios internally
+            on success store the response token and add it to localStorage using setItem and navigate to '/dashboard'
+            on error reset and provide the toast message:
+                toast message from react-hot-toast acts as popup
+        you can use custom create TextField.jsx to provide type and label for the input field similar to card
+        starts a setTimeout which will remove AccessToken for localStorage and set state to false based on timer
+        TextField:
+            use attributes like id, placeholder, type, error, pattern, required and minlength for input field
+        we can use register and errors to pass the values from form to data on loginHandler onSubmit
+        disable and enable the router using useState()
+        use Link element similar to anchor in html
+    
+    RegisterPage:
+        similar to login just change the TextFields according to you
+
+    hooks.js:
+        useFetchShortUrls:
+            use the tenstack/react-query useQuery to fetch the shorturl's from backend and perform ops
+            2 parts queryKey:[] and queryFn:()=>{}
+            queryFn returns response.data which is then passed to the below select :
+            in the select we can perform ops like sort, count etc and return the sorted data
+            you can provide onError and staleTime
+        useFetchTotalClicks:
+            similar to useFetchShortUrls considers 2 additional args startDate and endDate
+            returns object with keys clickDate and count
+
+    dashboardLayout:
+        use useFetchShortUrls and useFetchTotalClicks to provide the necessary data
+        use isLoading as loader to display the Loader.jsx: infinity spin
+        use Graph.jsx to represent the data fetched from the backend on to a chart using
+            react-chartjs and chartjs
+            for each url call: useFetchShortUrls for totalClicks: useFetchTotalClicks
+        create a shortenPopUp for creating shortUrls and copying it to clipboard
+        shortenUrlList for url display and analytics
+        setToken(false) when unable to fetch data from backend
+
+    shortenPopUp:
+        uses the materialUi's Model to create a popup box for creating short url
+
+    shortenUrlPage:
+        used for url based re-routing using useParams and useEffect from RRDom
 
     className:
         text-[size]
         font-[family]
         underline
-        lg px-14: lg-large screen pd-padding x-horizontal 14
-        sm pt-14: small screen padding top 14
+        sm, md, lg : until the breakpoints are reached don't do anything when reached express whats their in sm or md or lg
+        lg px-14: lg-large screen breakpoint pd-padding x-horizontal 14
+        sm pt-14: small screen breakpoint padding top 14
         min-h-[calc(100vh - 64px)]: min height []-embed value calc(100% vertical height - 64 pixels)
         bg-white: background white
         mb: margin bottom
@@ -53,13 +138,14 @@ App.jsx:
         space-y-5: space b/w child elements
         flex-row: arrange items in horizontal row fashion
         justify-between: justify b/w div elements
+        md-leading[]: medium screen breakpoint line height[val]
+        w-full:width 100%
+        bg-custom-gradient: background custom-gradient: own css defined in tailwind.config under extend
+        [calc()]: can put any absolute value calc(any eq)
+        btn-color: custom color defined in the tailwind.config
+        z-50: used when you want to put something on top of other
+        sticky: sticks an element at certain position
 
 
-footer:
-    &copy; before the text provides the copyWrite tag
-    we use className(tailwind unity classes) instead of style attribute
-        because in inline styling we need to manually defined the style attr like color, bg color
-        in case of className by tailwind because more responsive and easy to maintain
-    you can use the react-icons lib to generate different icons for linkedIn, facebook etc
-    all the contents are put inside the footer method return so when method is called they are returned
+        
     

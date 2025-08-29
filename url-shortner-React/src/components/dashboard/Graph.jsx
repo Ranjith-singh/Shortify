@@ -22,20 +22,24 @@ ChartJS.register(
 );
 
 const Graph = ({ graphData }) => {
-  const labels = graphData?.map((item, i) => `${item.clickDate}`);
-  const userPerDaya = graphData?.map((item) => item.count);
+  // graphData = graphData.sort((a,b)=>{
+  //   return new Date(a.clickDate) - new Date(b.clickDate);
+  // })
+  
+  const labels = graphData?.map((item) => `${item.clickDate}`);
+  const userPerDay = graphData?.map((item) => item.count);
 
   const data = {
     labels:
-     graphData.length > 0
+    graphData.length > 0
         ? labels
         : ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     datasets: [
       {
         label: "Total Clicks",
         data:
-         graphData.length > 0
-            ? userPerDaya
+        graphData.length > 0
+            ? userPerDay
             : [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
         backgroundColor:
         graphData.length > 0 ? "#3b82f6" : "rgba(54, 162, 235, 0.1)",
@@ -50,6 +54,8 @@ const Graph = ({ graphData }) => {
     ],
   };
 
+  // console.log("datasets:",data["datasets"][0]["data"]);
+
   const options = {
     maintainAspectRatio: false,
     responsive: true,
@@ -63,7 +69,7 @@ const Graph = ({ graphData }) => {
         beginAtZero: true,
         ticks: {
           // stepSize: 1,
-          callback: function (value) {
+          callback: function(value) {
             if (Number.isInteger(value)) {
               return value.toString();
             }

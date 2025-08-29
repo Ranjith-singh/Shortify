@@ -27,7 +27,7 @@ public class AuthController {
 
     @PostMapping("/public/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        System.out.println("Login attempt with email: " + loginRequest.getEmail());
+        // System.out.println("Login attempt with email: " + loginRequest.getEmail());
         return ResponseEntity.ok(userService.authenticateUser(loginRequest));
     }
     

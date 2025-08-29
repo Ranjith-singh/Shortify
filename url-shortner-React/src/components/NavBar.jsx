@@ -10,6 +10,7 @@ const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navigate = useNavigate();
   const {token, setToken} = useStoreContext();
+  const {bg,setBg} = useState(false);
 
   const onLogOutHandler = () => {
       clearInterval(timer);
@@ -28,6 +29,10 @@ const Navbar = () => {
       navigate("/dashboard");
     }
   }
+
+  // const changeBg = ()=>{
+  //   document.body.style.backgroundColor = "lightblue";
+  // }
 
   return (
     <div className="h-16 bg-custom-gradient  z-50 flex items-center sticky top-0 ">
@@ -71,16 +76,16 @@ const Navbar = () => {
                   Dashboard
               </Link>
             ) : (
-              <Link to="/login">
+              <Link to="/register">
               <li className=" sm:ml-0 -ml-1 bg-rose-700 text-white  cursor-pointer w-24 text-center font-semibold px-2 py-2 rounded-md  hover:text-slate-300   transition-all duration-150">
-                SignIn
+                SignUp
               </li>
             </Link>
             )}
             {token && (
             <button
-             onClick={onLogOutHandler}
-             className="sm:ml-0 -ml-1 bg-rose-700 text-white  cursor-pointer w-24 text-center font-semibold px-2 py-2 rounded-md  hover:text-slate-300   transition-all duration-150">
+              onClick={onLogOutHandler}
+              className="sm:ml-0 -ml-1 bg-rose-700 text-white  cursor-pointer w-24 text-center font-semibold px-2 py-2 rounded-md  hover:text-slate-300   transition-all duration-150">
               LogOut
             </button>
             )}
@@ -95,6 +100,9 @@ const Navbar = () => {
             <IoIosMenu className="text-white text-3xl" />
           )}
         </button>
+        {/* <button onClick={changeBg} className="mx-2 my-2 px-2 py-2">
+          click
+        </button> */}
       </div>
     </div>
   );
