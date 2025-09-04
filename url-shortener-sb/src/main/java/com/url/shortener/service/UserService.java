@@ -1,5 +1,7 @@
 package com.url.shortener.service;
 
+import com.google.api.services.gmail.model.Message;
+import com.url.shortener.dtos.EmailRequest;
 import com.url.shortener.dtos.LoginRequest;
 import com.url.shortener.models.User;
 
@@ -13,8 +15,15 @@ import com.url.shortener.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import com.url.shortener.security.jwt.JwtAuthenticationResponse;
 import com.url.shortener.security.jwt.JwtUtils;
+import com.url.shortener.service.email.CreateEmail;
+import com.url.shortener.service.gmail.CreateMessage;
 
 import lombok.AllArgsConstructor;
+
+import java.io.IOException;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 
 @Service
 @AllArgsConstructor
@@ -42,6 +51,24 @@ public class UserService {
         return new JwtAuthenticationResponse(jwt);
     }
 
+    public void sendEmail(EmailRequest emailRequest) throws MessagingException, IOException, Exception{
+        // MimeMessage email = CreateEmail.createEmail("ranjithsingh3108@gmail.com",
+        //     "ranjithsinghwork4@gmail.com",
+        //     "Email Testing",
+        //     "message from ranjith");
+
+        // Message message = CreateMessage.CreateMessageWithEmail(email);
+        // Message message = SendMessage.sendEmail(emailRequest.getSenderEmail(),
+        //     emailRequest.getReceiverEmail(),
+        //     emailRequest.getSubject(),
+        //     emailRequest.getBody());
+    }
+
+    public void changePassword(User user, LoginRequest loginRequest){
+        user.setPassword(passwordEncoder.encode(loginRequest.getPassword()));
+        userRepository.save(user);
+    }
+
     public User findByUsername(String name){
         return userRepository.findByUsername(name).orElseThrow(
             ()-> new UsernameNotFoundException("User not found with username: "+name)
@@ -50,7 +77,7 @@ public class UserService {
 
     public User findByEmail(String email){
         return userRepository.findByEmail(email).orElseThrow(
-            ()-> new UsernameNotFoundException("Email not found with username: "+email)
+            ()-> new UsernameNotFoundException("User not found with email: "+email)
         );
     }
 
@@ -60,5 +87,9 @@ public class UserService {
 
     public Boolean emailExists(User user){
         return userRepository.existsByEmail(user.getEmail());
+    }
+
+    public Boolean emailExists(String email){
+        return userRepository.existsByEmail(email);
     }
 }

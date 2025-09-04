@@ -6,14 +6,9 @@ import api from '../api/api';
 import toast from 'react-hot-toast';
 import { useStoreContext } from '../contextApi/ContextApi';
 
-let tokenTime;
-let timer;
-const logoutTime = 1000*60*60*24;
-
-const LoginPage = () => {
+const Email = () => {
     const navigate = useNavigate();
     const [loader, setLoader] = useState(false);
-    const { setToken } = useStoreContext();
 
     const {
         register,
@@ -22,48 +17,34 @@ const LoginPage = () => {
         formState: {errors}
     } = useForm({
         defaultValues: {
-            email: "",
-            password: ""
+            email: ""
         },
         mode: "onTouched",
     });
 
-    const onLogOutHandler = () => {
-        localStorage.removeItem("AccessToken");
-        setToken(false);
-        navigate("/login");
-    };
-
-    const loginHandler = async(data) =>{
+    const emailHandler = async(data) =>{
         setLoader(true);
+        // console.log("email: ",data["email"]);
+        const emailData = {
+            "senderEmail" : `${import.meta.env.SENDER_EMAIL}`,
+            "receiverEmail" : data["email"],
+            "subject" : "Reset password Request",
+            "body" : `${import.meta.env.VITE_FRONTEND_URL}`
+        }
         try {
             // console.log(data);
-            const { data: response } = await api.post(
-                "/api/auth/public/login",
-                data
+            await api.post(
+                "/api/auth/forgot-password",
+                emailData
             );
-            // console.log("AccessToken",response.token);
-            setToken(response.token);
-            localStorage.setItem('AccessToken',JSON.stringify(response.token));
-
-            // let time = 0;
-            // timer = setInterval(()=>{
-            //     time = time + 1000;
-            //     console.log(time);
-            // },1000)
-            tokenTime = setTimeout(()=>{
-                clearInterval(timer);
-                onLogOutHandler();
-            },logoutTime);
-
             reset();
-            navigate("/dashboard");
-            toast.success("Successful Login!")
+            toast.success("Email sent")
         } catch (error) {
             // navigate("/error");
             console.log(error);
-            toast.error(`Login Failed!\nInvalid email or password`)
-        } finally {
+            toast.error(`Email doesn't exists in the database, please Register`);
+        }
+        finally{
             setLoader(false);
         }
     };
@@ -71,10 +52,10 @@ const LoginPage = () => {
     return (
         <div
             className='min-h-[calc(100vh-64px)] flex justify-center items-center'>
-            <form onSubmit={handleSubmit(loginHandler)}
+            <form onSubmit={handleSubmit(emailHandler)}
                 className="sm:w-[450px] w-[360px]  shadow-custom py-8 sm:px-8 px-4 rounded-md">
                 <h1 className="text-center font-serif text-btnColor font-bold lg:text-3xl text-2xl">
-                    Login Here
+                    Enter Email id
                 </h1>
     
                 <hr className='mt-2 mb-5 text-black'/>
@@ -90,39 +71,21 @@ const LoginPage = () => {
                         register={register}
                         errors={errors}
                     />
-    
-                    <TextField
-                        label="Password"
-                        required
-                        id="password"
-                        type="password"
-                        message="*Password is required"
-                        placeholder="Type your password"
-                        register={register}
-                        min={6}
-                        errors={errors}
-                    />
                 </div>
     
                 <button
                     disabled={loader}
                     type='submit'
                     className='bg-customRed font-semibold text-white  bg-custom-gradient w-full py-2 hover:text-slate-400 transition-colors duration-100 rounded-sm my-3'>
-                    {loader ? "Loading..." : "Login"}
+                    {loader ? "Loading..." : "Send Email"}
                 </button>
     
                 <p className='text-center text-sm text-slate-700 mt-6'>
-                    {/* don't have an account?
+                    don't have an account?
                     <Link
-                        className='font-semibold hover:text-black hover:underline'
+                        className='font-semibold underline hover:text-black'
                         to="/register">
                             <span className='text-btnColor'> Signup</span>
-                    </Link>
-                    <br></br> */}
-                    <Link
-                        className='font-semibold hover:text-black hover:underline'
-                        to="/email">
-                            <span className='text-btnColor'>forgot password</span>
                     </Link>
                 </p>
             </form>
@@ -130,5 +93,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
-export {tokenTime, timer}
+export default Email

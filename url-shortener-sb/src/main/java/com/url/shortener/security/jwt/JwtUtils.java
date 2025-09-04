@@ -66,11 +66,14 @@ public class JwtUtils {
             Jwts.parser().verifyWith((SecretKey) key())
             .build()
             .parseSignedClaims(authToken);
+            System.out.println("token validated!");
             return true;
         }catch (JwtException e){
+            System.out.println("token validation failed!");
             throw new RuntimeException();
         }
         catch (Exception e) {
+            System.out.println("token validation failed!");
             throw new RuntimeException();
         }
     }

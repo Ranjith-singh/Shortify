@@ -29,14 +29,15 @@ const RegisterPage = () => {
         try{
             const { data: response } = await api.post(
                     "/api/auth/public/register",
-                    response);
+                    data);
             navigate("/login");
             toast.success("Registration Successful!")
         }
         catch(error){
-            if(response.status === 400){
-                reset();
-                toast.error(response.data);
+            console.log(error);
+            if(error.response.status === 400){
+                // reset();
+                toast.error(error.response.data);
             }
             else{
                 navigate("/error");

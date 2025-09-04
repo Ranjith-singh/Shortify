@@ -9,6 +9,8 @@ const TextField = ({
     className,
     min,
     value,
+    validate,
+    watch,
     placeholder,
   }) => {
     return (
@@ -48,6 +50,7 @@ const TextField = ({
                     message: "Please enter a valid url",
                   }
                 : null,
+            validate,
           })}
         />
   
