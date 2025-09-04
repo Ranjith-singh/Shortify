@@ -11,6 +11,8 @@ import DashboardLayout from './components/dashboard/DashboardLayout'
 import ShortenUrlPage from './components/ShortenUrlPage'
 import PrivateRoute from './PrivateRoute'
 import ErrorPage from './components/ErrorPage'
+import Email from './components/EmailPage'
+import ResetPassword from './components/ResetPassword'
 
 const AppRouter = () => {
   const hideHeaderFooter = location.pathname.startsWith("/url");
@@ -25,6 +27,8 @@ const AppRouter = () => {
 
           <Route path='/register' element={<PrivateRoute publicPage={true}><RegisterPage/></PrivateRoute>}/>
           <Route path='/login' element={<PrivateRoute publicPage={true}><LoginPage/></PrivateRoute>}/>
+          <Route path='/email' element={<PrivateRoute publicPage={true}><Email/></PrivateRoute>}/>
+          <Route path='/reset-password' element={<PrivateRoute publicPage={true}><ResetPassword/></PrivateRoute>}/>
 
           <Route path='/dashboard' element={<PrivateRoute publicPage={false}><DashboardLayout/></PrivateRoute>}/>
           <Route path='/error' element={<ErrorPage/>}/>

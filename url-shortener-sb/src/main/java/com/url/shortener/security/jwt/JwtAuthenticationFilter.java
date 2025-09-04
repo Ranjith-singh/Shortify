@@ -29,18 +29,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
+            // Skip JWT processing for public endpoints
+            String path = request.getServletPath();
+            if (path.startsWith("/api/auth/") || 
+                path.startsWith("/api/gmail/") ||
+                path.matches("/[a-zA-Z0-9]{6,12}")) {
+                filterChain.doFilter(request, response);
+                return;
+            }
             String jwt = jwtTokenProvider.getJwtFromHeader(request);
             if(jwt != null && jwtTokenProvider.validateToken(jwt)){
                 String username = jwtTokenProvider.getUsernameFromJwtToken(jwt);
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 if(userDetails != null){
-                    UsernamePasswordAuthenticationToken authentication = 
+                    UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
         } catch (Exception e) {
+            System.out.println("token validation failed! in filter");
             e.printStackTrace();
         }
 

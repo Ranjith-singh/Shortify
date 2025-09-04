@@ -1,0 +1,50 @@
+# Conversion to YAML from Properties formar report
+# Warnings:
+# - The yaml file had comments which are lost in the refactoring!
+spring:
+    application:
+        name: url-shortener-sb
+    datasource:
+        url: jdbc:postgresql://ep-dawn-field-a5n3tbby-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require
+        username: neondb_owner
+        password: npg_di5oYAr7zJFc
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: ${EMAIL}
+        password: ${APP_PASSWORD}
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
+                    required: true
+                    ssl:
+                        trust: smtp.gmail.com
+                    connectiontimeout: 5000
+                    timeout: 5000
+                    writetimeout: 5000
+
+jwt:
+    secret: 3f55a6f90ea95fdb300d9a009d7c3ea7d99e0cb979caab644e34a23bb5fcad4d92b2ede5e1d80c96e6c26c09024654596a1c30398709fca73c5cf0e55538947b
+    expiration: 17280000
+logging:
+    level:
+        org:
+            springframework:
+                security: DEBUG
+            url:
+                shortener: DEBUG
+frontend:
+    url: ${FRONTEND_URL}
+app:
+    base-url: ${BASE_URL}
+    password-reset:
+        expiration-time: 900000
