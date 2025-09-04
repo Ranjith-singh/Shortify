@@ -36,7 +36,7 @@ public class JwtUtils {
     }
     
     public String generateToken(UserDetailsImpl userDetails){
-        String username = userDetails.getUsername();
+        String username = userDetails.getEmail();
         String roles = userDetails.getAuthorities()
                         .stream()
                         .map(authority -> authority.getAuthority())
@@ -51,6 +51,10 @@ public class JwtUtils {
     }
 
     public String getUsernameFromJwtToken(String token){
+        // System.out.println("payload: "+Jwts.parser()
+        //         .verifyWith((SecretKey) key())
+        //         .build().parseSignedClaims(token)
+        //         .getPayload());
         return Jwts.parser()
                 .verifyWith((SecretKey) key())
                 .build().parseSignedClaims(token)

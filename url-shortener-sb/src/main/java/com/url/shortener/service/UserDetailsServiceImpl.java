@@ -18,11 +18,20 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
-        .orElseThrow(() -> new UsernameNotFoundException("Username provided doesn't exist : "+username));
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email)
+        .orElseThrow(() -> {
+            // System.out.println("User: "+ email);
+            return new UsernameNotFoundException("Email provided doesn't exist : "+email);
+        });
+
         return UserDetailsImpl.build(user);
     }
 
+    // public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    //     User user = userRepository.findByUsername(username)
+    //     .orElseThrow(() -> new UsernameNotFoundException("Username provided doesn't exist : "+username));
+    //     return UserDetailsImpl.build(user);
+    // }
 
 }

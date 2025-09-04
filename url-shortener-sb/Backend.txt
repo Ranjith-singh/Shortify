@@ -1,0 +1,10 @@
+changing authentication from username based to email based:
+    firstly in auth controller provide email not username
+    then in the usernamePasswordAutehnticationToken of the authenticationManager provide email as username
+    then while generating the token use the userDetails.getEmail() as subject
+    then in the loadUserByUsername provide email and use userRepository.findByEmail() to get the user
+    then get the principle stored using the SecurityContextHolder.getContext().setContext(authentication)
+        then typeCast to authentication and to userDetails using authentication.getPrinciple()
+    then instead of using the userDetails.getUsername() use getEmail() to get the user
+
+email based login:

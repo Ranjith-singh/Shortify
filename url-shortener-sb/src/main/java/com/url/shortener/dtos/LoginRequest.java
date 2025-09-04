@@ -1,7 +1,5 @@
 package com.url.shortener.dtos;
 
-import java.util.Set;
-
 import lombok.Data;
 
 @Data

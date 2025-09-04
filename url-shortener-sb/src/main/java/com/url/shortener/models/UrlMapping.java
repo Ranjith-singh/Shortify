@@ -10,10 +10,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
+import lombok.ToString;
+
 import java.util.*;
 
 @Entity
 @Data
+@ToString(exclude = "clickEvents")  // avoid recursion
 public class UrlMapping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

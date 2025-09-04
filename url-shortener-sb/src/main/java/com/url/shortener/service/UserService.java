@@ -40,6 +40,8 @@ public class UserService {
     }
 
     public JwtAuthenticationResponse authenticateUser(LoginRequest loginRequest){
+        // System.out.println("Login attempt with email: " + loginRequest.getEmail());
+        
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
         );

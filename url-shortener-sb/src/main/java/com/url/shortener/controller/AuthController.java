@@ -14,8 +14,6 @@ import com.url.shortener.dtos.EmailRequest;
 import com.url.shortener.dtos.LoginRequest;
 import com.url.shortener.dtos.RegisterRequest;
 
-import lombok.AllArgsConstructor;
-
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -30,6 +28,7 @@ public class AuthController {
 
     @PostMapping("/public/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        // System.out.println("Login attempt with email: " + loginRequest.getEmail());
         return ResponseEntity.ok(userService.authenticateUser(loginRequest));
     }
     
@@ -41,8 +40,14 @@ public class AuthController {
         user.setPassword(registerRequest.getPassword());
         user.setEmail(registerRequest.getEmail());
         user.setRole("ROLE_USER");
+        // if(userService.userExists(user)){
+        //     return ResponseEntity.badRequest().body("User Already Exists");
+        // }
+        if(userService.emailExists(user)){
+            return ResponseEntity.badRequest().body("Email Already Exists");
+        }
         userService.registerUser(user);
-        return ResponseEntity.ok("User Registered Succesfully");
+        return ResponseEntity.ok("User Registered Successfully");
     }
 
     @PostMapping("/public/email")
